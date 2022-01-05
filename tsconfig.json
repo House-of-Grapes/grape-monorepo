@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@grape/*": ["./packages/*/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "**/.*/", "**/jest.config.js", "**/.build"]
+}

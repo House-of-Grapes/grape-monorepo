@@ -1,0 +1,12 @@
+{
+  "name": "@grape/shared",
+  "main": "src/index.ts",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/*.ts",
+    "test": "jest",
+    "clean": "rm -r dist/*"
+  }
+}

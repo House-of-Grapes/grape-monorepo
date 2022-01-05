@@ -1,0 +1,31 @@
+{
+  "name": "@grape/contracts",
+  "version": "1.0.0",
+  "main": "generated/index.ts",
+  "scripts": {
+    "deploy": "npx hardhat --network localhost deploy",
+    "deploy:testnet": "npx hardhat --network moonbase deploy",
+    "accounts": "npx hardhat --network localhost accounts",
+    "compile": "npx hardhat compile",
+    "test": "hardhat test --network hardhat",
+    "typechain": "typechain --target=ethers-v5 'abi/*.json' 'external-abi/*.json'  --out-dir generated"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.3",
+    "@nomiclabs/hardhat-etherscan": "^2.1.8",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "^4.4.0",
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "@typechain/hardhat": "^3.0.0",
+    "hardhat": "^2.7.1",
+    "hardhat-abi-exporter": "^2.3.1",
+    "hardhat-deploy": "^0.9.14"
+  },
+  "devDependencies": {
+    "@typechain/ethers-v5": "^8.0.5",
+    "@types/chai": "^4.3.0",
+    "@types/chai-as-promised": "^7.1.4",
+    "chai-as-promised": "^7.1.1",
+    "hardhat-gas-reporter": "^1.0.6"
+  }
+}

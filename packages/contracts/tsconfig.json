@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig",
+  "include": ["./test/*.ts", "./deploy/*.ts"],
+  "files": ["hardhat.config.ts"],
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "esModuleInterop": true,
+    "baseUrl": "."
+  },
+  "exclude": ["./generated/hardhat.d.ts", "*/Ownable__factory.ts"]
+}

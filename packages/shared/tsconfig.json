@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "baseUrl": "src"
+  },
+  "files": [],
+  "references": [],
+  "include": [
+    "./src/**.ts",
+    "../../contracts/deployments/*.json",
+    "../contracts/deployments/*.json",
+    "../contracts/deployments/**.*"
+  ]
+}

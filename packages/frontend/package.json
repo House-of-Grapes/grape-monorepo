@@ -1,0 +1,42 @@
+{
+  "name": "@grape/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "lint": "next lint",
+    "build": "next build && next export"
+  },
+  "dependencies": {
+    "@grape/generator": "^1.0.0",
+    "@grape/shared": "^1.0.0",
+    "@react-three/cannon": "^4.3.0",
+    "@react-three/drei": "^8.3.1",
+    "@react-three/fiber": "^7.0.24",
+    "@react-three/postprocessing": "^2.1.2",
+    "@types/three": "^0.135.0",
+    "dayjs": "^1.10.7",
+    "decimal.js": "^10.3.1",
+    "eth-rpc-errors": "^4.0.3",
+    "framer-motion": "^5.5.5",
+    "ismobilejs": "^1.1.1",
+    "js-confetti": "^0.10.2",
+    "next": "12.0.7",
+    "next-transpile-modules": "^9.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-feather": "^2.0.9",
+    "react-hot-toast": "^2.1.1",
+    "react-spinners": "^0.11.0",
+    "three": "^0.135.0"
+  },
+  "devDependencies": {
+    "@types/decimal.js": "^7.4.0",
+    "@types/node": "17.0.2",
+    "@types/react": "17.0.37",
+    "eslint": "8.5.0",
+    "eslint-config-next": "12.0.7",
+    "typescript": "4.5.4"
+  }
+}

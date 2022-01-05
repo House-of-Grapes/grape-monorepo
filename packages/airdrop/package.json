@@ -1,0 +1,10 @@
+{
+  "name": "airdrop",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "start": "node dist/src/server.js",
+    "dev": "nodemon --require dotenv/config src/server.ts",
+    "dev:airdrop": "nodemon --require dotenv/config src/server.ts --airdrop"
+  }
+}
