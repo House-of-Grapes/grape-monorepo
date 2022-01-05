@@ -45,3 +45,5 @@ yarn-error.log*
 *.tsbuildinfo
 packages/frontend/.next
 /.next/
+/.env/
+generator.log

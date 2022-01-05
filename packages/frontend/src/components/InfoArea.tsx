@@ -134,8 +134,8 @@ const Register = styled.div`
 
 const InfoArea: FC = () => {
   const { selectedAccount } = useWeb3()
-  const { canInitialClaim } = useHarvestContext()
-  const grape = useGrapeBalance([canInitialClaim])
+  const { canInitialClaim, isEligble, haveClaimed } = useHarvestContext()
+  const grape = useGrapeBalance([canInitialClaim, isEligble, haveClaimed])
   const rome = useStakedBalance()
   const { profile, isLoading: isLoadingProfile } = useConscription()
   const isLoading = isLoadingProfile || grape.isLoading || rome.isLoading

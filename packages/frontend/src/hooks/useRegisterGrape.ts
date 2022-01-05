@@ -7,15 +7,15 @@ const useRegisterGrape = (): {
   visible: boolean
   registerToken: () => void
 } => {
-  const { isMetamask, isConnected, chainId } = useWeb3()
+  const { isMetamask, selectedAccount, chainId } = useWeb3()
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    const stored = window.localStorage.getItem('grape-added')
-    if (!stored && isConnected) {
+    const stored = window.localStorage.getItem('grape-added' + selectedAccount)
+    if (!stored && selectedAccount) {
       setShow(true)
     }
-  }, [isConnected])
+  }, [selectedAccount])
 
   const registerToken = async () => {
     try {
@@ -33,7 +33,7 @@ const useRegisterGrape = (): {
       })
 
       if (tokenRegistered) {
-        window.localStorage.setItem('grape-added', 'true')
+        window.localStorage.setItem('grape-added' + selectedAccount, 'true')
         setShow(false)
       }
     } catch (e) {
