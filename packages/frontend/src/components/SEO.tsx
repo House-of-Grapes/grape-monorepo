@@ -27,8 +27,7 @@ const SEO: FC<Props> = ({
   const metaTitle = `${title || defaultTitle}`
   const metaDescription = description || defaultDescription
 
-  let metaImage = `/meta-image.png`
-  // let metaImage = "https://houseofgrapes.eth.link/meta-image.png"
+  let metaImage = 'https://grape-monorepo.vercel.app/meta-image.png'
 
   const metaContent = [
     {

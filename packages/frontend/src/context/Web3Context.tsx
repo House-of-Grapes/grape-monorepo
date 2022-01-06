@@ -174,8 +174,6 @@ export const Web3Provider: FC = ({ children }) => {
     }
 
     const onChainChanged = (chainId: number) => {
-      window.location.reload()
-
       if (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
@@ -187,7 +185,7 @@ export const Web3Provider: FC = ({ children }) => {
       }
     }
     if (web3ModalProvider) {
-      web3ModalProvider.on('disconnect', onDisconnect)
+      // web3ModalProvider.on('disconnect', onDisconnect)
       web3ModalProvider.on('accountsChanged', onAccountsChanged)
       web3ModalProvider.on('chainChanged', onChainChanged)
     }

@@ -208,7 +208,7 @@ const ClaimArea: FC = () => {
           <InitialArea>
             <p>
               We give out an initial airdrop to everyone who staked $ROME when
-              the snapshot was taken. This 1000 $GRAPES can only be claimed
+              the snapshot was taken. This 1000 $GRAPEs can only be claimed
               once.
             </p>
             <Receive>

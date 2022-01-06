@@ -32,7 +32,8 @@ const Text = styled(motion.h1)`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-
+  text-shadow: 2px 3px 10px rgb(0 0 0 / 25%);
+  font-weight: bold;
   @media (min-width: 930px) {
     font-size: 6rem;
   }
@@ -69,7 +70,7 @@ const SuccessScreen: FC = () => {
           emojiSize: 110,
           confettiNumber: 270,
         })
-      }, 300)
+      }, 700)
     }
   }, [haveClaimed, haveInitialClaimed])
 
@@ -77,7 +78,7 @@ const SuccessScreen: FC = () => {
 
   const sentence = {
     hide: { transition: { staggerChildren: 0.015 } },
-    show: { transition: { staggerChildren: 0.03, delayChildren: 0.5 } },
+    show: { transition: { staggerChildren: 0.03, delayChildren: 1 } },
   }
 
   const letters = {
