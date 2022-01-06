@@ -52,8 +52,8 @@ export const Web3Provider: FC = ({ children }) => {
     const chainName = CHAIN === Chains.MOONBASE ? 'Moonbase Alpha' : 'Moonriver'
     const blockExplorer =
       CHAIN === Chains.MOONBASE
-        ? 'https://moonbase-blockscout.testnet.moonbeam.network/'
-        : 'https://moonriver.moonscan.io/'
+        ? 'https://moonbase.moonscan.io/'
+        : 'https://moonscan.io/'
     const name = CHAIN === Chains.MOONBASE ? 'DEV' : 'MOVR'
     const rpcUrls = RPC_URL[CHAIN]
 

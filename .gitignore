@@ -49,4 +49,4 @@ packages/frontend/.next
 generator.log
 
 lerna-debug.log
-/packages/contracts/deployments/localhost/
+/packages/contracts/deployments/localhost/*

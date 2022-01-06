@@ -213,7 +213,9 @@ const ClaimArea: FC = () => {
             </p>
             <Receive>
               <label>You will receive </label>
-              <figure>1000 $GRAPE</figure>
+              <figure>
+                <Countup value="1000" /> $GRAPE
+              </figure>
             </Receive>
             <Button
               loading={isClaimingInitial}

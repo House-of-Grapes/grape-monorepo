@@ -20,6 +20,10 @@ const Inner = styled.div`
   position: relative;
   z-index: 4;
   padding: 1rem;
+
+  @media (min-width: 930px) {
+    padding-top: 10rem;
+  }
 `
 const Header = styled.div`
   margin-bottom: 1rem;
@@ -41,7 +45,7 @@ const Header = styled.div`
 const Logo = styled.div`
   width: 200px;
 
-  @media (min-width: 930px) and (max-width: 2000px) {
+  @media (max-height: 1150px) and (min-width: 930px) {
     width: 150px;
     margin-left: auto;
     margin-right: 1rem;

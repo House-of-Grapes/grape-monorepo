@@ -26,6 +26,8 @@ let acc1: SignerWithAddress
 let acc2: SignerWithAddress
 let acc3: SignerWithAddress
 let acc4: SignerWithAddress
+let acc5: SignerWithAddress
+
 let addrs: SignerWithAddress[] = []
 let merkleTree: MerkleTree
 
@@ -38,13 +40,13 @@ const generateLeaf = (address: string, value: string) =>
   )
 
 const transferToStaking = (addr: string, amount: string) =>
-  stakingToken.transfer(addr, ethers.utils.parseEther(amount), {
+  stakingToken.transfer(addr, ethers.utils.parseUnits(amount, 9), {
     from: owner.address,
   })
 
 describe('Grape', function () {
   beforeEach(async function () {
-    ;[owner, daoAcc, acc1, acc2, acc3, acc4, ...addrs] =
+    ;[owner, daoAcc, acc1, acc2, acc3, acc4, acc5, ...addrs] =
       await ethers.getSigners()
 
     GrapeTokenFactory = await ethers.getContractFactory('GrapeToken')
@@ -199,6 +201,7 @@ describe('Grape', function () {
       await transferToStaking(acc2.address, '200')
       await transferToStaking(acc3.address, '0.5')
       await transferToStaking(acc4.address, '22.64')
+      await transferToStaking(acc5.address, '14.96')
 
       expect(
         (await rewardsContract.getAmount(acc3.address)).toString()
@@ -211,6 +214,10 @@ describe('Grape', function () {
       expect(
         (await rewardsContract.getAmount(acc2.address)).toString()
       ).to.equal(ethers.utils.parseEther('92').toString())
+
+      expect(
+        (await rewardsContract.getAmount(acc5.address)).toString()
+      ).to.equal(ethers.utils.parseEther('82.3936').toString())
 
       expect(
         (await rewardsContract.getAmount(acc4.address)).toString()

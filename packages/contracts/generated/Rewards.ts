@@ -42,7 +42,9 @@ export interface RewardsInterface extends utils.Interface {
     "setClaimInterval(uint256)": FunctionFragment;
     "setRewardsToken(address)": FunctionFragment;
     "setStakingToken(address)": FunctionFragment;
+    "setStakingTokenDecimals(uint256)": FunctionFragment;
     "stakingToken()": FunctionFragment;
+    "stakingTokenDecimals()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "unpause()": FunctionFragment;
   };
@@ -119,7 +121,15 @@ export interface RewardsInterface extends utils.Interface {
     values: [string]
   ): string;
   encodeFunctionData(
+    functionFragment: "setStakingTokenDecimals",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "stakingToken",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "stakingTokenDecimals",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -200,7 +210,15 @@ export interface RewardsInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "setStakingTokenDecimals",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "stakingToken",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "stakingTokenDecimals",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -446,9 +464,23 @@ export interface Rewards extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    setStakingTokenDecimals(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "setStakingTokenDecimals(uint256)"(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     stakingToken(overrides?: CallOverrides): Promise<[string]>;
 
     "stakingToken()"(overrides?: CallOverrides): Promise<[string]>;
+
+    stakingTokenDecimals(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "stakingTokenDecimals()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transferOwnership(
       newOwner: string,
@@ -631,9 +663,23 @@ export interface Rewards extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  setStakingTokenDecimals(
+    _stakingTokenDecimals: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "setStakingTokenDecimals(uint256)"(
+    _stakingTokenDecimals: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   stakingToken(overrides?: CallOverrides): Promise<string>;
 
   "stakingToken()"(overrides?: CallOverrides): Promise<string>;
+
+  stakingTokenDecimals(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "stakingTokenDecimals()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   transferOwnership(
     newOwner: string,
@@ -807,9 +853,23 @@ export interface Rewards extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    setStakingTokenDecimals(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "setStakingTokenDecimals(uint256)"(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     stakingToken(overrides?: CallOverrides): Promise<string>;
 
     "stakingToken()"(overrides?: CallOverrides): Promise<string>;
+
+    stakingTokenDecimals(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "stakingTokenDecimals()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferOwnership(
       newOwner: string,
@@ -1026,9 +1086,23 @@ export interface Rewards extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    setStakingTokenDecimals(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "setStakingTokenDecimals(uint256)"(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     stakingToken(overrides?: CallOverrides): Promise<BigNumber>;
 
     "stakingToken()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    stakingTokenDecimals(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "stakingTokenDecimals()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferOwnership(
       newOwner: string,
@@ -1230,9 +1304,27 @@ export interface Rewards extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    setStakingTokenDecimals(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "setStakingTokenDecimals(uint256)"(
+      _stakingTokenDecimals: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     stakingToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "stakingToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    stakingTokenDecimals(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "stakingTokenDecimals()"(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: string,

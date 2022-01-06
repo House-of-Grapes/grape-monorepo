@@ -5,6 +5,7 @@
   "scripts": {
     "deploy": "npx hardhat --network localhost deploy",
     "deploy:testnet": "npx hardhat --network moonbase deploy",
+    "deploy:mainnet": "npx hardhat --network moonriver deploy",
     "accounts": "npx hardhat --network localhost accounts",
     "compile": "npx hardhat compile",
     "test": "hardhat test --network hardhat",

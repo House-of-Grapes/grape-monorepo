@@ -4,6 +4,8 @@ import stakingAbiLocalhost from '../../contracts/deployments/localhost/StakingTo
 import grapeTokenAbiMoonbase from '../../contracts/deployments/moonbase/GrapeToken.json'
 import rewardsAbiMoonbase from '../../contracts/deployments/moonbase/Rewards.json'
 import stakingTokenAbiMoonbase from '../../contracts/deployments/moonbase/StakingToken.json'
+import grapeTokenAbiMoonriver from '../../contracts/deployments/moonriver/GrapeToken.json'
+import rewardsAbiMoonriver from '../../contracts/deployments/moonriver/Rewards.json'
 
 export enum Chains {
   LOCALHOST = 31337,
@@ -40,8 +42,8 @@ export const Address: Record<Chains, any> = {
     [Contracts.RomeConscription]: romeConscriptionMoonriverAddress,
   },
   [Chains.MOONRIVER]: {
-    [Contracts.GrapeToken]: grapeTokenAbiLocalhost.address,
-    [Contracts.Rewards]: rewardsAbiLocalhost.address,
+    [Contracts.GrapeToken]: grapeTokenAbiMoonriver.address,
+    [Contracts.Rewards]: rewardsAbiMoonriver.address,
     [Contracts.StakingToken]: '0x89f52002e544585b42f8c7cf557609ca4c8ce12a',
     [Contracts.RomeConscription]: romeConscriptionMoonriverAddress,
   },

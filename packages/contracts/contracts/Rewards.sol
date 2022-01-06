@@ -33,6 +33,8 @@ contract Rewards is Ownable, ReentrancyGuard, Pausable {
     uint256 public claimAmount = 80 * 1e18;
     uint256 public claimBonusNumerator = 20;
     uint256 public claimBonusCeiling = 75 * 1e18;
+    uint256 public stakingTokenDecimals = 1e9;
+
     bytes32 public immutable merkleRoot;
 
     mapping(address => bool) public hasInitialClaimed;
@@ -106,7 +108,10 @@ contract Rewards is Ownable, ReentrancyGuard, Pausable {
     function _getAmount(address account) internal view returns (uint256) {
         uint256 balance = stakingToken.balanceOf(account);
 
-        if (balance >= 1e18) {
+        if (balance >= stakingTokenDecimals) {
+            if (stakingTokenDecimals != 1e18) {
+                balance = balance * stakingTokenDecimals;
+            }
             uint256 maxBalance = balance;
 
             if (balance > claimBonusCeiling) {
@@ -188,5 +193,12 @@ contract Rewards is Ownable, ReentrancyGuard, Pausable {
         onlyOwner
     {
         claimBonusCeiling = _claimBonusCeiling;
+    }
+
+    function setStakingTokenDecimals(uint256 _stakingTokenDecimals)
+        external
+        onlyOwner
+    {
+        stakingTokenDecimals = _stakingTokenDecimals;
     }
 }

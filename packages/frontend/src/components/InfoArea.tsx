@@ -185,7 +185,9 @@ const InfoArea: FC = () => {
       >
         <Item header>$GRAPE</Item>
         <Item>Your $GRAPE balance: {formatBalance(grape.balance)}</Item>
-        <Item last>You have staked: {formatBalance(sRome.balance)} $ROME</Item>
+        <Item last>
+          You have staked: {formatBalance(sRome.balance, 9)} $ROME
+        </Item>
         <Spacer />
 
         <div>

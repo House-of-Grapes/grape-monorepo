@@ -2,8 +2,8 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { ethers } from 'ethers'
 import { Decimal } from 'decimal.js'
 
-export const formatBalance = (balance: BigNumber): string => {
-  return new Decimal(ethers.utils.formatEther(balance))
+export const formatBalance = (balance: BigNumber, decimals = 18): string => {
+  return new Decimal(ethers.utils.formatUnits(balance, decimals))
     .toDecimalPlaces(2)
     .toString()
 }

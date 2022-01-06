@@ -25,7 +25,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const rewardsContract = await deploy(name, {
     from: deployer,
     args: [rewardToken.address, stakingTokenAddress, merkle.root],
-    gasPrice: BigNumber.from('150000000000'),
+    // gasPrice: BigNumber.from('150000000000'),
   })
 
   deployments.log(
