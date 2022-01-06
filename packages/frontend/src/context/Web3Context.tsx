@@ -54,7 +54,7 @@ export const Web3Provider: FC = ({ children }) => {
       CHAIN === Chains.MOONBASE
         ? 'https://moonbase-blockscout.testnet.moonbeam.network/'
         : 'https://moonriver.moonscan.io/'
-
+    const name = CHAIN === Chains.MOONBASE ? 'DEV' : 'MOVR'
     const rpcUrls = RPC_URL[CHAIN]
 
     try {
@@ -65,8 +65,8 @@ export const Web3Provider: FC = ({ children }) => {
             chainId: `0x${chainId.toString(16)}`,
             chainName: chainName,
             nativeCurrency: {
-              name: 'MOVR',
-              symbol: 'MOVR',
+              name: name,
+              symbol: name,
               decimals: 18,
             },
             rpcUrls: [rpcUrls],

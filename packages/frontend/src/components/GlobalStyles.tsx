@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
         background: rgb(174,38,87);
 
         background: linear-gradient(180deg, rgba(174,38,87,1) 0%, rgba(147,18,64,1) 100%);
-
+        background-attachment: fixed;
 
         font-size: 20px; 
         line-height: 1.5;

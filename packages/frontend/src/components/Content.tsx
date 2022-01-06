@@ -15,6 +15,11 @@ const Container = styled.div`
     margin-top: 2rem;
     padding: 2rem;
   }
+
+  @media (max-width: 500px) {
+    padding: 0rem;
+    margin-top: 4rem;
+  }
 `
 const Part = styled.div`
   @media (max-width: 930px) {

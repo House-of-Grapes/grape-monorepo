@@ -61,13 +61,15 @@ const SuccessScreen: FC = () => {
   useEffect(() => {
     if (haveClaimed || haveInitialClaimed) {
       setShow(true)
-      const jsConfetti = new JSConfetti()
+      setTimeout(() => {
+        const jsConfetti = new JSConfetti()
 
-      jsConfetti.addConfetti({
-        emojis: ['🍇'],
-        emojiSize: 110,
-        confettiNumber: 270,
-      })
+        jsConfetti.addConfetti({
+          emojis: ['🍇'],
+          emojiSize: 110,
+          confettiNumber: 270,
+        })
+      }, 300)
     }
   }, [haveClaimed, haveInitialClaimed])
 
@@ -106,7 +108,7 @@ const SuccessScreen: FC = () => {
       {show && (
         <Container
           initial={{ opacity: 0, y: 50 }}
-          exit={{ opacity: 0, transition: { delay: 0.5 } }}
+          exit={{ opacity: 0, transition: { delay: 1 } }}
           animate={{ opacity: 1, y: 0 }}
         >
           <Inner>
