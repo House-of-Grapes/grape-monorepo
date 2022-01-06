@@ -1,25 +1,4 @@
 info: Generating Merkle tree.
-info: Generated Merkle root: 0x12edea00a4e64146f52c452cf9e64accfb80972a6b016f1d0fb4b890a5305317
-info: Generated merkle tree and root saved to Merkle.json.
-info: Generating Merkle tree.
-info: Generated Merkle root: 0xd260595e5308073f475652da5497cd01058ce0156018cb5721c86ac42d12ccf2
-info: Generated merkle tree and root saved to Merkle.json.
-info: Generating Merkle tree.
-info: Generated Merkle root: 0x25ded89198762162b6dfcc583c12abf6a94002c57cc8c4225cf19730a0581d70
-info: Generated merkle tree and root saved to Merkle.json.
-info: Generating Merkle tree.
-info: Generated Merkle root: 0xab29aa3e6ff2a7a7fbc4bd153a6023145fec8cfb32429863c7dfe72f7b7ac89b
-info: Holders count: 19853
-info: Generated merkle tree and root saved to Merkle.json.
-info: Generating Merkle tree.
-info: Generated Merkle root: 0x060c21a98afba7c91a8615ac4a3b378e36c6352fd0164665bcf57eaca0f46d5a
-info: Holders count: 60
-info: Generated merkle tree and root saved to Merkle.json.
-info: Generating Merkle tree.
-info: Generated Merkle root: 0x060c21a98afba7c91a8615ac4a3b378e36c6352fd0164665bcf57eaca0f46d5a
-info: Holders count: 60
-info: Generated merkle tree and root saved to Merkle.json.
-info: Generating Merkle tree.
-info: Generated Merkle root: 0x060c21a98afba7c91a8615ac4a3b378e36c6352fd0164665bcf57eaca0f46d5a
-info: Holders count: 60
+info: Generated Merkle root: 0x381e10f5a50fb62ac43c23bd759c694568a88aabd498a41dcd63a4710d8297ef
+info: Holders count: 20347
 info: Generated merkle tree and root saved to Merkle.json.

@@ -16,7 +16,7 @@ export const fetchAllHolders = async (): Promise<string[]> => {
 
   try {
     for (let i of whileGenerator()) {
-      const isTestnet = true
+      const isTestnet = false
       const baseUrl = isTestnet
         ? 'https://moonbase-blockscout.testnet.moonbeam.network'
         : 'https://blockscout.moonriver.moonbeam.network'

@@ -50,6 +50,11 @@ export const Web3Provider: FC = ({ children }) => {
   const promptChain = async () => {
     const chainId = CHAIN
     const chainName = CHAIN === Chains.MOONBASE ? 'Moonbase Alpha' : 'Moonriver'
+    const blockExplorer =
+      CHAIN === Chains.MOONBASE
+        ? 'https://moonbase-blockscout.testnet.moonbeam.network/'
+        : 'https://moonriver.moonscan.io/'
+
     const rpcUrls = RPC_URL[CHAIN]
 
     try {
@@ -65,7 +70,7 @@ export const Web3Provider: FC = ({ children }) => {
               decimals: 18,
             },
             rpcUrls: [rpcUrls],
-            blockExplorerUrls: [],
+            blockExplorerUrls: [blockExplorer],
           },
         ],
       })
