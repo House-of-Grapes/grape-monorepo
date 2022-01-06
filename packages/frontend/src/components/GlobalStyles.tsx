@@ -34,12 +34,14 @@ const GlobalStyles = createGlobalStyle`
         background: linear-gradient(180deg, rgba(174,38,87,1) 0%, rgba(147,18,64,1) 100%);
 
 
-        font-size: 16px; 
+        font-size: 20px; 
         line-height: 1.5;
         @media (min-width: 930px) {
             overflow:hidden;
         }
     }
+
+   
 
     img {
         max-width: 100%;
@@ -52,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
 
 
     h1,h2,h3 {
-        font-family: 'IBM Plex Mono', monospace;
+        /* font-family: 'IBM Plex Mono', monospace; */
     }
 
     h2 {

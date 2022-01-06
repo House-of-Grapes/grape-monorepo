@@ -12,17 +12,14 @@ const Container = styled.div`
 
   @media (min-width: 930px) {
     height: 100%;
+    overflow: auto;
   }
 `
 
 const Inner = styled.div`
   position: relative;
   z-index: 4;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem;
 `
 const Header = styled.div`
   margin-bottom: 1rem;
@@ -43,6 +40,12 @@ const Header = styled.div`
 `
 const Logo = styled.div`
   width: 200px;
+
+  @media (min-width: 930px) and (max-width: 2000px) {
+    width: 150px;
+    margin-left: auto;
+    margin-right: 1rem;
+  }
 
   @media (max-width: 930px) {
     width: 150px;

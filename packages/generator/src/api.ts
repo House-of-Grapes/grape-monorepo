@@ -23,7 +23,7 @@ export const fetchAllHolders = async (): Promise<string[]> => {
 
       const stakingTokenAddress = isTestnet
         ? '0x465f6492Eb0CCF5f3ef7C2D9D6E2ce3b8368Edb5'
-        : ''
+        : '0x89f52002e544585b42f8c7cf557609ca4c8ce12a'
       const url = `${baseUrl}/api?module=token&action=getTokenHolders&contractaddress=${stakingTokenAddress}&page=${PAGE_OFFSET}&offset=${PAGE_SIZE}`
       const { data } = await axios.get<{
         result: { address: string; value: string }[]

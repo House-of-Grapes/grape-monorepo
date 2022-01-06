@@ -47,3 +47,6 @@ packages/frontend/.next
 /.next/
 /.env/
 generator.log
+
+lerna-debug.log
+/packages/contracts/deployments/localhost/

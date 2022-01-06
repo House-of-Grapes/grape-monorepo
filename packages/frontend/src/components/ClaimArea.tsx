@@ -3,7 +3,6 @@ import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { useHarvestContext } from '../context/HarvestContext'
 import { useWeb3 } from '../context/Web3Context'
-import useStakedBalance from '../hooks/useStakedBalance'
 import { brand } from '../utils/styles'
 import Button from './Button'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -11,15 +10,11 @@ import { XSquare, CheckSquare } from 'react-feather'
 import { formatBalance } from '../utils/formatter'
 import Countdown from './Countdown'
 import Countup from './Countup'
+import { useBalanceContext } from '../context/BalanceContext'
 
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-
-  box-shadow: 0.3px 1.3px 0.8px rgba(0, 0, 0, 0.012),
-    0.8px 3.1px 2px rgba(0, 0, 0, 0.016), 1.5px 5.8px 3.8px rgba(0, 0, 0, 0.018),
-    2.7px 10.3px 6.7px rgba(0, 0, 0, 0.022),
-    5px 19.2px 12.5px rgba(0, 0, 0, 0.029), 12px 46px 30px rgba(0, 0, 0, 0.05);
 
   @media (min-width: 930px) {
     margin-left: 50px;
@@ -40,6 +35,11 @@ const Container = styled.div`
   padding: 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0.09);
   color: #222;
+
+  box-shadow: 0.3px 1.3px 0.8px rgba(0, 0, 0, 0.012),
+    0.8px 3.1px 2px rgba(0, 0, 0, 0.016), 1.5px 5.8px 3.8px rgba(0, 0, 0, 0.018),
+    2.7px 10.3px 6.7px rgba(0, 0, 0, 0.022),
+    5px 19.2px 12.5px rgba(0, 0, 0, 0.029), 12px 46px 30px rgba(0, 0, 0, 0.05);
 `
 
 const Title = styled.h3`
@@ -62,6 +62,12 @@ const WrongChain = styled(motion.div)`
   width: 100%;
   bottom: -50px;
   text-align: center;
+
+  @media (max-width: 930px) {
+    bottom: 0px;
+    position: relative;
+    margin-top: 4rem;
+  }
 `
 
 const Receive = styled.div`
@@ -128,7 +134,7 @@ const ClaimArea: FC = () => {
     isClaimingInitial,
     claimInitial,
   } = useHarvestContext()
-  const rome = useStakedBalance()
+  const { sRome } = useBalanceContext()
   const onClick = isConnected ? claimTokens : connect
   let buttonText = 'Connect'
 
@@ -137,8 +143,8 @@ const ClaimArea: FC = () => {
   } else if (selectedAccount) {
     buttonText = 'Claim'
   }
-  const showEligbleStatus = !isLoading && selectedAccount && !rome.isLoading
-  const haveStaked = !rome.balance.isZero()
+  const showEligbleStatus = !isLoading && selectedAccount && !sRome.isLoading
+  const haveStaked = !sRome.balance.isZero()
   let textBody = null
 
   if (isConnected && !isLoading) {
@@ -222,13 +228,15 @@ const ClaimArea: FC = () => {
 
       <AnimatePresence>
         {!isCorrectChain && isConnected && (
-          <WrongChain
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: -10 }}
-            onClick={() => switchToChain()}
-          >
-            Incorrect Chain! Click to switch
-          </WrongChain>
+          <>
+            <WrongChain
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: -10 }}
+              onClick={() => switchToChain()}
+            >
+              Incorrect Chain! Click to switch
+            </WrongChain>
+          </>
         )}
       </AnimatePresence>
     </Wrapper>

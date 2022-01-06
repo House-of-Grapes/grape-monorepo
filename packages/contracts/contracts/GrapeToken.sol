@@ -89,4 +89,20 @@ contract GrapeToken is ERC20, Pausable, AccessControl {
         );
         burnableTimestamp = _timestamp;
     }
+
+    function transferOwnership(address newOwner)
+        external
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
+        require(newOwner != address(0), 'Address cant be empty');
+        _grantRole(DEFAULT_ADMIN_ROLE, newOwner);
+        _grantRole(PAUSER_ROLE, newOwner);
+        _grantRole(MINTER_ROLE, newOwner);
+        _grantRole(BURNER_ROLE, newOwner);
+
+        renounceRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        renounceRole(PAUSER_ROLE, msg.sender);
+        renounceRole(MINTER_ROLE, msg.sender);
+        renounceRole(BURNER_ROLE, msg.sender);
+    }
 }

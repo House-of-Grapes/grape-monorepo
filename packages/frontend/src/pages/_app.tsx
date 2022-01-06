@@ -1,12 +1,21 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
-import { Toaster } from 'react-hot-toast'
+import { useEffect } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import GlobalStyles from '../components/GlobalStyles'
 import { Web3Provider } from '../context//Web3Context'
+import { BalanceProvider } from '../context/BalanceContext'
 import { HarvestProvider } from '../context/HarvestContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    if (!window.ethereum) {
+      toast.error(
+        'Cannot find a wallet. Please download Metamask or another wallet provider.'
+      )
+    }
+  }, [])
   return (
     <Web3Provider>
       <Head>
@@ -25,11 +34,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         ></link>
       </Head>
-      <HarvestProvider>
-        <GlobalStyles />
-        <Component {...pageProps} />
-        <Toaster containerClassName="toaster" />
-      </HarvestProvider>
+      <BalanceProvider>
+        <HarvestProvider>
+          <GlobalStyles />
+          <Component {...pageProps} />
+          <Toaster containerClassName="toaster" />
+        </HarvestProvider>
+      </BalanceProvider>
     </Web3Provider>
   )
 }

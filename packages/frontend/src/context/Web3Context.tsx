@@ -169,6 +169,8 @@ export const Web3Provider: FC = ({ children }) => {
     }
 
     const onChainChanged = (chainId: number) => {
+      window.location.reload()
+
       if (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent

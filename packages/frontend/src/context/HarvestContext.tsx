@@ -18,8 +18,9 @@ import { ethers } from 'ethers'
 import { MerkleTree } from 'merkletreejs'
 import keccak256 from 'keccak256'
 import JSConfetti from 'js-confetti'
+import { useBalanceContext } from './BalanceContext'
 
-type HarvetContext = {
+type HarvestContext = {
   isEligble: boolean
   harvestAmount: BigNumber
   lastClaimed: Dayjs
@@ -32,9 +33,10 @@ type HarvetContext = {
   canInitialClaim: boolean
   claimInitial: () => Promise<void>
   isClaimingInitial: boolean
+  haveInitialClaimed: boolean
 }
 
-const HarvetContext = createContext<HarvetContext>(null)
+const HarvestContext = createContext<HarvestContext>(null)
 
 export const HarvestProvider: FC = ({ children }) => {
   const {
@@ -44,9 +46,12 @@ export const HarvestProvider: FC = ({ children }) => {
     isCorrectChain,
     standardProvider,
   } = useWeb3()
+  const { refetchBalances } = useBalanceContext()
   const [isLoading, setIsLoading] = useState(false)
   const [isEligble, setisEligble] = useState(false)
   const [haveClaimed, setHaveClaimed] = useState(false)
+  const [haveInitialClaimed, setHaveInitialClaimed] = useState(false)
+
   const [canInitialClaim, setCanInitialClaim] = useState(false)
   const [harvestAmount, setHarvestAmount] = useState(BigNumber.from('0'))
   const [lastClaimed, setLastClaimed] = useState<Dayjs | null>(null)
@@ -87,6 +92,7 @@ export const HarvestProvider: FC = ({ children }) => {
 
       if (lastClaimed.toString() != '0') {
         setLastClaimed(dayjs(Number(lastClaimed.toString()) * 1000))
+        setHaveClaimed(false)
       }
     } catch (e) {
       console.error(e)
@@ -120,7 +126,8 @@ export const HarvestProvider: FC = ({ children }) => {
         isCorrectChain &&
         Rewards__factory.connect(address, web3Provider.getSigner(0))
       const tx = await contractWithSigner.claim()
-      const txResult = await tx.wait(1)
+      await tx.wait(1)
+      refetchBalances()
       await fetchData()
       const jsConfetti = new JSConfetti()
 
@@ -130,11 +137,11 @@ export const HarvestProvider: FC = ({ children }) => {
         confettiNumber: 270,
       })
       setHaveClaimed(true)
-
-      toast.success('Claim done')
     } catch (e) {
       const message =
-        (serializeError(e)?.data as any)?.message || 'Unknown error'
+        (serializeError(e)?.data as any)?.message ||
+        e.message ||
+        'Unknown error'
 
       toast.error(`Failed to claim. Message: ${message}`)
       console.error(e)
@@ -163,30 +170,27 @@ export const HarvestProvider: FC = ({ children }) => {
       )
 
       const leaf = generateLeaf(
-        selectedAccount,
+        ethers.utils.getAddress(selectedAccount),
         ethers.utils.parseEther('1000').toString()
       )
 
       const tx = await contractWithSigner.initialClaim(
-        selectedAccount,
+        ethers.utils.getAddress(selectedAccount),
         ethers.utils.parseEther('1000'),
         merkleTree.getHexProof(leaf)
       )
-      tx.wait(1)
+      const receipt = await tx.wait(1)
+      refetchBalances()
+      console.log('.....receipt', receipt)
+      setHaveInitialClaimed(true)
       console.log(tx)
       setCanInitialClaim(false)
       setIsClaimingInitial(false)
-      toast.success('Claim done')
-      const jsConfetti = new JSConfetti()
-
-      jsConfetti.addConfetti({
-        emojis: ['🍇'],
-        emojiSize: 110,
-        confettiNumber: 270,
-      })
     } catch (e) {
       const message =
-        (serializeError(e)?.data as any)?.message || 'Unknown error'
+        (serializeError(e)?.data as any)?.message ||
+        e.message ||
+        'Unknown error'
 
       toast.error(`Failed to claim. Message: ${message}`)
       console.error(e)
@@ -208,17 +212,18 @@ export const HarvestProvider: FC = ({ children }) => {
     canInitialClaim,
     isClaimingInitial,
     claimInitial,
+    haveInitialClaimed,
   }
 
   return (
-    <HarvetContext.Provider value={value}>{children}</HarvetContext.Provider>
+    <HarvestContext.Provider value={value}>{children}</HarvestContext.Provider>
   )
 }
 
 export const useHarvestContext = () => {
-  const ctx = useContext(HarvetContext)
+  const ctx = useContext(HarvestContext)
   if (!ctx) {
-    throw new Error('Missing HarvetContext.Provider')
+    throw new Error('Missing HarvestContext.Provider')
   }
   return ctx
 }

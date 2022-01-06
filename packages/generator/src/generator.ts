@@ -54,6 +54,7 @@ export default class Generator {
     // Collect and log merkle root
     const merkleRoot: string = merkleTree.getHexRoot()
     logger.info(`Generated Merkle root: ${merkleRoot}`)
+    logger.info(`Holders count: ${this.recipients.length}`)
 
     // Collect and save merkle tree + root
     await fs.writeFileSync(

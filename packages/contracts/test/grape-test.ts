@@ -20,9 +20,6 @@ let stakingToken: StakingToken
 let RewardsFactory
 let rewardsContract: Rewards
 
-// let DistributorFactory
-// let distributorContract: Distributor
-
 let owner: SignerWithAddress
 let daoAcc: SignerWithAddress
 let acc1: SignerWithAddress
@@ -148,6 +145,40 @@ describe('Grape', function () {
       expect(
         ethers.utils.formatEther(await grapeToken.balanceOf(acc1.address))
       ).to.equal('0.0')
+    })
+
+    it('can transfer ownership', async () => {
+      const MINTER_ROLE = await grapeToken.MINTER_ROLE()
+      const BURNER_ROLE = await grapeToken.BURNER_ROLE()
+      const DEFAULT_ADMIN_ROLE = await grapeToken.DEFAULT_ADMIN_ROLE()
+      const PAUSER_ROLE = await grapeToken.PAUSER_ROLE()
+
+      let result = await Promise.all([
+        grapeToken.hasRole(MINTER_ROLE, owner.address),
+        grapeToken.hasRole(BURNER_ROLE, owner.address),
+        grapeToken.hasRole(DEFAULT_ADMIN_ROLE, owner.address),
+        grapeToken.hasRole(PAUSER_ROLE, owner.address),
+      ])
+
+      expect(result.every((val) => val)).to.equal(true)
+      await grapeToken.transferOwnership(acc1.address)
+
+      result = await Promise.all([
+        grapeToken.hasRole(MINTER_ROLE, owner.address),
+        grapeToken.hasRole(BURNER_ROLE, owner.address),
+        grapeToken.hasRole(DEFAULT_ADMIN_ROLE, owner.address),
+        grapeToken.hasRole(PAUSER_ROLE, owner.address),
+      ])
+
+      expect(result.every((val) => !val)).to.equal(true)
+
+      result = await Promise.all([
+        grapeToken.hasRole(MINTER_ROLE, acc1.address),
+        grapeToken.hasRole(BURNER_ROLE, acc1.address),
+        grapeToken.hasRole(DEFAULT_ADMIN_ROLE, acc1.address),
+        grapeToken.hasRole(PAUSER_ROLE, acc1.address),
+      ])
+      expect(result.every((val) => val)).to.equal(true)
     })
   })
 

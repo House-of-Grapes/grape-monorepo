@@ -17,10 +17,7 @@ interface IERC20Mintable is IERC20 {
     function mint(address to, uint256 amount) external;
 }
 
-contract Rewards is Ownable, ReentrancyGuard, Pausable, AccessControl {
-    bytes32 public constant PAUSER_ROLE = keccak256('PAUSER_ROLE');
-    bytes32 public constant RELEASER_ROLE = keccak256('RELEASER_ROLE');
-
+contract Rewards is Ownable, ReentrancyGuard, Pausable {
     IERC20Mintable public rewardsToken;
     IERC20 public stakingToken;
 
@@ -57,17 +54,13 @@ contract Rewards is Ownable, ReentrancyGuard, Pausable, AccessControl {
         rewardsToken = IERC20Mintable(_rewardsToken);
         stakingToken = IERC20(_stakingToken);
         merkleRoot = _merkleRoot;
-
-        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _grantRole(PAUSER_ROLE, msg.sender);
-        _grantRole(RELEASER_ROLE, msg.sender);
     }
 
-    function pause() public onlyRole(PAUSER_ROLE) {
+    function pause() public onlyOwner {
         _pause();
     }
 
-    function unpause() public onlyRole(PAUSER_ROLE) {
+    function unpause() public onlyOwner {
         _unpause();
     }
 

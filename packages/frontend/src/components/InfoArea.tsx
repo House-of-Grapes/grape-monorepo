@@ -3,8 +3,6 @@ import { FC, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useWeb3 } from '../context/Web3Context'
 import useConscription from '../hooks/useConscription'
-import useGrapeBalance from '../hooks/useGrapeBalance'
-import useStakedBalance from '../hooks/useStakedBalance'
 import { formatAddressToShort, formatBalance } from '../utils/formatter'
 import { Check, PlusCircle } from 'react-feather'
 import { PuffLoader } from 'react-spinners'
@@ -12,6 +10,7 @@ import { motion } from 'framer-motion'
 import { useHarvestContext } from '../context/HarvestContext'
 import { romeDao } from '../utils/styles'
 import useRegisterGrape from '../hooks/useRegisterGrape'
+import { useBalanceContext } from '../context/BalanceContext'
 
 const Account = styled.div`
   border-radius: 9999px;
@@ -114,6 +113,8 @@ const Topbar = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 `
 
 const Register = styled.div`
@@ -133,14 +134,14 @@ const Register = styled.div`
 `
 
 const InfoArea: FC = () => {
-  const { selectedAccount } = useWeb3()
-  const { canInitialClaim, isEligble, haveClaimed } = useHarvestContext()
-  const grape = useGrapeBalance([canInitialClaim, isEligble, haveClaimed])
-  const rome = useStakedBalance()
+  const { selectedAccount, isConnecting } = useWeb3()
+  const { grape, sRome } = useBalanceContext()
   const { profile, isLoading: isLoadingProfile } = useConscription()
-  const isLoading = isLoadingProfile || grape.isLoading || rome.isLoading
   const [mounted, setMounted] = useState(false)
   const { visible, registerToken } = useRegisterGrape()
+
+  const isLoading =
+    isLoadingProfile || grape.isLoading || sRome.isLoading || isConnecting
 
   React.useEffect(() => {
     setMounted(true)
@@ -184,7 +185,7 @@ const InfoArea: FC = () => {
       >
         <Item header>$GRAPE</Item>
         <Item>Your $GRAPE balance: {formatBalance(grape.balance)}</Item>
-        <Item last>You have staked: {formatBalance(rome.balance)} $ROME</Item>
+        <Item last>You have staked: {formatBalance(sRome.balance)} $ROME</Item>
         <Spacer />
 
         <div>
@@ -218,13 +219,22 @@ const InfoArea: FC = () => {
             Twitter
           </a>
         </Item>
-        <Item last>
+        <Item>
           <a
             href="https://discord.gg/Mt6pFxmz"
             target="_blank"
             rel="noreferrer"
           >
             Discord
+          </a>
+        </Item>
+        <Item last>
+          <a
+            href="https://github.com/House-of-Grapes"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
           </a>
         </Item>
       </motion.div>

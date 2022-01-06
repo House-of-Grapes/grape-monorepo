@@ -10,13 +10,16 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await getNamedAccounts()
   const { deploy } = deployments
   const rewardToken = await deployments.get('GrapeToken')
-  const stakingToken = await deployments.get('StakingToken')
+
   const name = 'Rewards'
-  let stakingTokenAddress = stakingToken.address
+  let stakingTokenAddress
 
   if (hardhatArguments.network === 'moonriver') {
     // sROME
     stakingTokenAddress = '0x89f52002e544585b42f8c7cf557609ca4c8ce12a'
+  } else {
+    const stakingToken = await deployments.get('StakingToken')
+    stakingTokenAddress = stakingToken.address
   }
 
   const rewardsContract = await deploy(name, {
@@ -30,6 +33,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       rewardsContract.address
     )} `
   )
+
+  deployments.log(`${merkle.tree.leaves.length} accounts added to MerkleTree`)
 
   const [owner] = await ethers.getSigners()
   const grapeTokenContract = await ethers.getContractAt(

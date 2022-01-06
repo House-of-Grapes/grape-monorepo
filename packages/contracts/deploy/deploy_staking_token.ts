@@ -5,7 +5,7 @@ import chalk from 'chalk'
 const name = 'StakingToken'
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  const { deployments, getNamedAccounts, hardhatArguments } = hre
+  const { deployments, getNamedAccounts } = hre
   const { deployer } = await getNamedAccounts()
   const { deploy } = deployments
 
@@ -26,5 +26,5 @@ func.tags = [name]
 func.skip = async (hre: HardhatRuntimeEnvironment) => {
   const { hardhatArguments } = hre
 
-  return hardhatArguments.network !== 'moonriver'
+  return hardhatArguments.network === 'moonriver'
 }

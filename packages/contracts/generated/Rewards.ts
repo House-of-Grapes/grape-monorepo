@@ -19,20 +19,14 @@ import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
 export interface RewardsInterface extends utils.Interface {
   functions: {
-    "DEFAULT_ADMIN_ROLE()": FunctionFragment;
     "DENOMINATOR()": FunctionFragment;
-    "PAUSER_ROLE()": FunctionFragment;
-    "RELEASER_ROLE()": FunctionFragment;
     "claim()": FunctionFragment;
     "claimAmount()": FunctionFragment;
     "claimBonusCeiling()": FunctionFragment;
     "claimBonusNumerator()": FunctionFragment;
     "claimInterval()": FunctionFragment;
     "getAmount(address)": FunctionFragment;
-    "getRoleAdmin(bytes32)": FunctionFragment;
-    "grantRole(bytes32,address)": FunctionFragment;
     "hasInitialClaimed(address)": FunctionFragment;
-    "hasRole(bytes32,address)": FunctionFragment;
     "initialClaim(address,uint256,bytes32[])": FunctionFragment;
     "isEligble(address)": FunctionFragment;
     "lastClaimed(address)": FunctionFragment;
@@ -41,8 +35,6 @@ export interface RewardsInterface extends utils.Interface {
     "pause()": FunctionFragment;
     "paused()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
-    "renounceRole(bytes32,address)": FunctionFragment;
-    "revokeRole(bytes32,address)": FunctionFragment;
     "rewardsToken()": FunctionFragment;
     "setClaimAmount(uint256)": FunctionFragment;
     "setClaimBonusCeiling(uint256)": FunctionFragment;
@@ -51,25 +43,12 @@ export interface RewardsInterface extends utils.Interface {
     "setRewardsToken(address)": FunctionFragment;
     "setStakingToken(address)": FunctionFragment;
     "stakingToken()": FunctionFragment;
-    "supportsInterface(bytes4)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "unpause()": FunctionFragment;
   };
 
   encodeFunctionData(
-    functionFragment: "DEFAULT_ADMIN_ROLE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "DENOMINATOR",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "PAUSER_ROLE",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "RELEASER_ROLE",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "claim", values?: undefined): string;
@@ -91,20 +70,8 @@ export interface RewardsInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "getAmount", values: [string]): string;
   encodeFunctionData(
-    functionFragment: "getRoleAdmin",
-    values: [BytesLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "grantRole",
-    values: [BytesLike, string]
-  ): string;
-  encodeFunctionData(
     functionFragment: "hasInitialClaimed",
     values: [string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "hasRole",
-    values: [BytesLike, string]
   ): string;
   encodeFunctionData(
     functionFragment: "initialClaim",
@@ -122,14 +89,6 @@ export interface RewardsInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "renounceOwnership",
     values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "renounceRole",
-    values: [BytesLike, string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "revokeRole",
-    values: [BytesLike, string]
   ): string;
   encodeFunctionData(
     functionFragment: "rewardsToken",
@@ -164,29 +123,13 @@ export interface RewardsInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "supportsInterface",
-    values: [BytesLike]
-  ): string;
-  encodeFunctionData(
     functionFragment: "transferOwnership",
     values: [string]
   ): string;
   encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
 
   decodeFunctionResult(
-    functionFragment: "DEFAULT_ADMIN_ROLE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "DENOMINATOR",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "PAUSER_ROLE",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "RELEASER_ROLE",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "claim", data: BytesLike): Result;
@@ -208,15 +151,9 @@ export interface RewardsInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "getAmount", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getRoleAdmin",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
-  decodeFunctionResult(
     functionFragment: "hasInitialClaimed",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "initialClaim",
     data: BytesLike
@@ -234,11 +171,6 @@ export interface RewardsInterface extends utils.Interface {
     functionFragment: "renounceOwnership",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "renounceRole",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "rewardsToken",
     data: BytesLike
@@ -272,10 +204,6 @@ export interface RewardsInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "supportsInterface",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "transferOwnership",
     data: BytesLike
   ): Result;
@@ -286,9 +214,6 @@ export interface RewardsInterface extends utils.Interface {
     "InitialClaim(address,uint256)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
     "Paused(address)": EventFragment;
-    "RoleAdminChanged(bytes32,bytes32,bytes32)": EventFragment;
-    "RoleGranted(bytes32,address,address)": EventFragment;
-    "RoleRevoked(bytes32,address,address)": EventFragment;
     "Unpaused(address)": EventFragment;
   };
 
@@ -296,9 +221,6 @@ export interface RewardsInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "InitialClaim"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Paused"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "RoleAdminChanged"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "RoleGranted"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "RoleRevoked"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Unpaused"): EventFragment;
 }
 
@@ -327,28 +249,6 @@ export type OwnershipTransferredEventFilter =
 export type PausedEvent = TypedEvent<[string], { account: string }>;
 
 export type PausedEventFilter = TypedEventFilter<PausedEvent>;
-
-export type RoleAdminChangedEvent = TypedEvent<
-  [string, string, string],
-  { role: string; previousAdminRole: string; newAdminRole: string }
->;
-
-export type RoleAdminChangedEventFilter =
-  TypedEventFilter<RoleAdminChangedEvent>;
-
-export type RoleGrantedEvent = TypedEvent<
-  [string, string, string],
-  { role: string; account: string; sender: string }
->;
-
-export type RoleGrantedEventFilter = TypedEventFilter<RoleGrantedEvent>;
-
-export type RoleRevokedEvent = TypedEvent<
-  [string, string, string],
-  { role: string; account: string; sender: string }
->;
-
-export type RoleRevokedEventFilter = TypedEventFilter<RoleRevokedEvent>;
 
 export type UnpausedEvent = TypedEvent<[string], { account: string }>;
 
@@ -381,21 +281,9 @@ export interface Rewards extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
-
-    "DEFAULT_ADMIN_ROLE()"(overrides?: CallOverrides): Promise<[string]>;
-
     DENOMINATOR(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     "DENOMINATOR()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    PAUSER_ROLE(overrides?: CallOverrides): Promise<[string]>;
-
-    "PAUSER_ROLE()"(overrides?: CallOverrides): Promise<[string]>;
-
-    RELEASER_ROLE(overrides?: CallOverrides): Promise<[string]>;
-
-    "RELEASER_ROLE()"(overrides?: CallOverrides): Promise<[string]>;
 
     claim(
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -428,25 +316,6 @@ export interface Rewards extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<[string]>;
-
-    "getRoleAdmin(bytes32)"(
-      role: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "grantRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     hasInitialClaimed(
       arg0: string,
       overrides?: CallOverrides
@@ -454,18 +323,6 @@ export interface Rewards extends BaseContract {
 
     "hasInitialClaimed(address)"(
       arg0: string,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    hasRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    "hasRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
@@ -522,30 +379,6 @@ export interface Rewards extends BaseContract {
     ): Promise<ContractTransaction>;
 
     "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "renounceRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "revokeRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -617,16 +450,6 @@ export interface Rewards extends BaseContract {
 
     "stakingToken()"(overrides?: CallOverrides): Promise<[string]>;
 
-    supportsInterface(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -646,21 +469,9 @@ export interface Rewards extends BaseContract {
     ): Promise<ContractTransaction>;
   };
 
-  DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
-
-  "DEFAULT_ADMIN_ROLE()"(overrides?: CallOverrides): Promise<string>;
-
   DENOMINATOR(overrides?: CallOverrides): Promise<BigNumber>;
 
   "DENOMINATOR()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-  PAUSER_ROLE(overrides?: CallOverrides): Promise<string>;
-
-  "PAUSER_ROLE()"(overrides?: CallOverrides): Promise<string>;
-
-  RELEASER_ROLE(overrides?: CallOverrides): Promise<string>;
-
-  "RELEASER_ROLE()"(overrides?: CallOverrides): Promise<string>;
 
   claim(
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -693,41 +504,10 @@ export interface Rewards extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
-
-  "getRoleAdmin(bytes32)"(
-    role: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  grantRole(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "grantRole(bytes32,address)"(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   hasInitialClaimed(arg0: string, overrides?: CallOverrides): Promise<boolean>;
 
   "hasInitialClaimed(address)"(
     arg0: string,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  hasRole(
-    role: BytesLike,
-    account: string,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  "hasRole(bytes32,address)"(
-    role: BytesLike,
-    account: string,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
@@ -784,30 +564,6 @@ export interface Rewards extends BaseContract {
   ): Promise<ContractTransaction>;
 
   "renounceOwnership()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  renounceRole(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "renounceRole(bytes32,address)"(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  revokeRole(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "revokeRole(bytes32,address)"(
-    role: BytesLike,
-    account: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -879,16 +635,6 @@ export interface Rewards extends BaseContract {
 
   "stakingToken()"(overrides?: CallOverrides): Promise<string>;
 
-  supportsInterface(
-    interfaceId: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  "supportsInterface(bytes4)"(
-    interfaceId: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
   transferOwnership(
     newOwner: string,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -908,21 +654,9 @@ export interface Rewards extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
-
-    "DEFAULT_ADMIN_ROLE()"(overrides?: CallOverrides): Promise<string>;
-
     DENOMINATOR(overrides?: CallOverrides): Promise<BigNumber>;
 
     "DENOMINATOR()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    PAUSER_ROLE(overrides?: CallOverrides): Promise<string>;
-
-    "PAUSER_ROLE()"(overrides?: CallOverrides): Promise<string>;
-
-    RELEASER_ROLE(overrides?: CallOverrides): Promise<string>;
-
-    "RELEASER_ROLE()"(overrides?: CallOverrides): Promise<string>;
 
     claim(overrides?: CallOverrides): Promise<void>;
 
@@ -951,25 +685,6 @@ export interface Rewards extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
-
-    "getRoleAdmin(bytes32)"(
-      role: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "grantRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     hasInitialClaimed(
       arg0: string,
       overrides?: CallOverrides
@@ -977,18 +692,6 @@ export interface Rewards extends BaseContract {
 
     "hasInitialClaimed(address)"(
       arg0: string,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    hasRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "hasRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
@@ -1039,30 +742,6 @@ export interface Rewards extends BaseContract {
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
-
-    renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "renounceRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "revokeRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     rewardsToken(overrides?: CallOverrides): Promise<string>;
 
@@ -1132,16 +811,6 @@ export interface Rewards extends BaseContract {
 
     "stakingToken()"(overrides?: CallOverrides): Promise<string>;
 
-    supportsInterface(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
     transferOwnership(
       newOwner: string,
       overrides?: CallOverrides
@@ -1187,59 +856,14 @@ export interface Rewards extends BaseContract {
     "Paused(address)"(account?: null): PausedEventFilter;
     Paused(account?: null): PausedEventFilter;
 
-    "RoleAdminChanged(bytes32,bytes32,bytes32)"(
-      role?: BytesLike | null,
-      previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
-    ): RoleAdminChangedEventFilter;
-    RoleAdminChanged(
-      role?: BytesLike | null,
-      previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
-    ): RoleAdminChangedEventFilter;
-
-    "RoleGranted(bytes32,address,address)"(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
-    ): RoleGrantedEventFilter;
-    RoleGranted(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
-    ): RoleGrantedEventFilter;
-
-    "RoleRevoked(bytes32,address,address)"(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
-    ): RoleRevokedEventFilter;
-    RoleRevoked(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
-    ): RoleRevokedEventFilter;
-
     "Unpaused(address)"(account?: null): UnpausedEventFilter;
     Unpaused(account?: null): UnpausedEventFilter;
   };
 
   estimateGas: {
-    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "DEFAULT_ADMIN_ROLE()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     DENOMINATOR(overrides?: CallOverrides): Promise<BigNumber>;
 
     "DENOMINATOR()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    PAUSER_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "PAUSER_ROLE()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    RELEASER_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "RELEASER_ROLE()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     claim(
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1272,28 +896,6 @@ export interface Rewards extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getRoleAdmin(
-      role: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "getRoleAdmin(bytes32)"(
-      role: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "grantRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     hasInitialClaimed(
       arg0: string,
       overrides?: CallOverrides
@@ -1301,18 +903,6 @@ export interface Rewards extends BaseContract {
 
     "hasInitialClaimed(address)"(
       arg0: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    hasRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "hasRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1369,30 +959,6 @@ export interface Rewards extends BaseContract {
     ): Promise<BigNumber>;
 
     "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "renounceRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "revokeRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1464,16 +1030,6 @@ export interface Rewards extends BaseContract {
 
     "stakingToken()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    supportsInterface(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1494,25 +1050,9 @@ export interface Rewards extends BaseContract {
   };
 
   populateTransaction: {
-    DEFAULT_ADMIN_ROLE(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "DEFAULT_ADMIN_ROLE()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     DENOMINATOR(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "DENOMINATOR()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    PAUSER_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "PAUSER_ROLE()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    RELEASER_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "RELEASER_ROLE()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     claim(
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1554,28 +1094,6 @@ export interface Rewards extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getRoleAdmin(
-      role: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "getRoleAdmin(bytes32)"(
-      role: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "grantRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     hasInitialClaimed(
       arg0: string,
       overrides?: CallOverrides
@@ -1583,18 +1101,6 @@ export interface Rewards extends BaseContract {
 
     "hasInitialClaimed(address)"(
       arg0: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    hasRole(
-      role: BytesLike,
-      account: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "hasRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1657,30 +1163,6 @@ export interface Rewards extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "renounceRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "revokeRole(bytes32,address)"(
-      role: BytesLike,
-      account: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1751,16 +1233,6 @@ export interface Rewards extends BaseContract {
     stakingToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "stakingToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    supportsInterface(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: string,

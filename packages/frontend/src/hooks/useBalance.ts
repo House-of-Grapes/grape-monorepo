@@ -5,10 +5,13 @@ import { GrapeToken__factory, StakingToken__factory } from '@grape/contracts'
 import { BigNumber } from '@ethersproject/bignumber'
 import toast from 'react-hot-toast'
 
-const useBalance = (
-  target: Contracts,
-  deps: any[] = []
-): { isLoading: boolean; balance: BigNumber } => {
+export type UseBalanceValue = {
+  isLoading: boolean
+  balance: BigNumber
+  refetch: () => Promise<void>
+}
+
+const useBalance = (target: Contracts): UseBalanceValue => {
   const [isLoading, setIsLoading] = useState(false)
   const [balance, setBalance] = useState(BigNumber.from('0'))
   const { chainId, standardProvider, selectedAccount } = useWeb3()
@@ -35,14 +38,23 @@ const useBalance = (
     }
   }
 
+  const refetch = async () => {
+    if (contract && selectedAccount) {
+      try {
+        const balance = await contract.balanceOf(selectedAccount)
+        setBalance(balance)
+      } catch (e) {}
+    }
+  }
+
   useEffect(() => {
     if (contract && selectedAccount) {
       setIsLoading(true)
       getBalance()
     }
-  }, [Boolean(contract), selectedAccount, ...deps])
+  }, [Boolean(contract), selectedAccount])
 
-  return { balance, isLoading }
+  return { balance, isLoading, refetch }
 }
 
 export default useBalance

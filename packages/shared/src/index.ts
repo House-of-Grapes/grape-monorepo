@@ -1,11 +1,9 @@
 import grapeTokenAbiLocalhost from '../../contracts/deployments/localhost/GrapeToken.json'
 import rewardsAbiLocalhost from '../../contracts/deployments/localhost/Rewards.json'
-import distributorAbiLocalhost from '../../contracts/deployments/localhost/Distributor.json'
 import stakingAbiLocalhost from '../../contracts/deployments/localhost/StakingToken.json'
 import grapeTokenAbiMoonbase from '../../contracts/deployments/moonbase/GrapeToken.json'
 import rewardsAbiMoonbase from '../../contracts/deployments/moonbase/Rewards.json'
 import stakingTokenAbiMoonbase from '../../contracts/deployments/moonbase/StakingToken.json'
-// import distributorAbiMoonbase from '../../contracts/deployments/moonbase/Distributor.json'
 
 export enum Chains {
   LOCALHOST = 31337,
@@ -23,7 +21,6 @@ export enum Contracts {
   GrapeToken = 'GrapeToken',
   Rewards = 'Rewards',
   StakingToken = 'StakingToken',
-  Distributor = 'Distributor',
   RomeConscription = 'RomeConscription',
 }
 
@@ -33,14 +30,12 @@ export const Address: Record<Chains, any> = {
   [Chains.LOCALHOST]: {
     [Contracts.GrapeToken]: grapeTokenAbiLocalhost.address,
     [Contracts.Rewards]: rewardsAbiLocalhost.address,
-    [Contracts.Distributor]: distributorAbiLocalhost.address,
     [Contracts.StakingToken]: stakingAbiLocalhost.address,
     [Contracts.RomeConscription]: romeConscriptionMoonriverAddress,
   },
   [Chains.MOONBASE]: {
     [Contracts.GrapeToken]: grapeTokenAbiMoonbase.address,
     [Contracts.Rewards]: rewardsAbiMoonbase.address,
-    [Contracts.Distributor]: '', //distributorAbiMoonbase.address,
     [Contracts.StakingToken]: stakingTokenAbiMoonbase.address,
     [Contracts.RomeConscription]: romeConscriptionMoonriverAddress,
   },
