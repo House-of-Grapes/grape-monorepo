@@ -15,14 +15,12 @@ export const BalanceProvider: FC = ({ children }) => {
   const sRome = useBalance(Contracts.StakingToken)
 
   useEffect(() => {
-    const onFocus = () => {
+    const intervalId = setInterval(() => {
       refetchBalances()
-    }
-
-    window.addEventListener('focus', onFocus)
+    }, 1000 * 60)
 
     return () => {
-      window.removeEventListener('focus', onFocus)
+      clearInterval(intervalId)
     }
   })
 

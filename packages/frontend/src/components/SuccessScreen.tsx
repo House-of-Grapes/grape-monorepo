@@ -55,9 +55,30 @@ const Inner = styled.div`
   margin: 0 auto;
 `
 
+const sentences = [
+  'May your grapes grow with you!',
+  'Fruitful ventures ahead',
+  'In wine there is truth',
+  'The vine prospers while the wine ages',
+  'Better to spoil the grapes, then to spoil the wine',
+  'Bunch together as grapes to flow forth like wine',
+]
+
+const randomInt = (prev?: number) => {
+  const getInt = () =>
+    Math.floor(Math.random() * (sentences.length - 1 - 0 + 1) + 0)
+  let result = getInt()
+  while (prev === result) {
+    result = getInt()
+  }
+
+  return result
+}
+
 const SuccessScreen: FC = () => {
   const { haveClaimed, haveInitialClaimed } = useHarvestContext()
   const [show, setShow] = React.useState(false)
+  const [randomIndex, setRandomIndex] = React.useState(randomInt())
 
   useEffect(() => {
     if (haveClaimed || haveInitialClaimed) {
@@ -70,11 +91,9 @@ const SuccessScreen: FC = () => {
           emojiSize: 110,
           confettiNumber: 270,
         })
-      }, 700)
+      }, 350)
     }
   }, [haveClaimed, haveInitialClaimed])
-
-  const text = 'May your grapes grow with you.'
 
   const sentence = {
     hide: { transition: { staggerChildren: 0.015 } },
@@ -102,15 +121,20 @@ const SuccessScreen: FC = () => {
     },
   }
 
-  const words = text.split(' ')
+  const words = sentences[randomIndex].split(' ')
 
   return (
-    <AnimatePresence>
+    <AnimatePresence
+      onExitComplete={() => {
+        setRandomIndex(randomInt(randomIndex))
+      }}
+    >
       {show && (
         <Container
           initial={{ opacity: 0, y: 50 }}
-          exit={{ opacity: 0, transition: { delay: 1 } }}
+          exit={{ opacity: 0, transition: { delay: 1, duration: 0.8 } }}
           animate={{ opacity: 1, y: 0 }}
+          key={randomIndex}
         >
           <Inner>
             <Text
@@ -121,7 +145,7 @@ const SuccessScreen: FC = () => {
               onAnimationComplete={() => {
                 setTimeout(() => {
                   setShow(false)
-                }, 1100)
+                }, 2600)
               }}
             >
               {words.map((word, wordIndex) => (

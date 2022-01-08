@@ -166,6 +166,7 @@ const ClaimArea: FC = () => {
   } else {
     textBody = 'Connect your wallet to start collecting your daily $GRAPE'
   }
+
   return (
     <Wrapper>
       <AnimatePresence>

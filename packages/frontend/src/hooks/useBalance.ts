@@ -31,7 +31,6 @@ const useBalance = (target: Contracts): UseBalanceValue => {
     try {
       const balance = await contract.balanceOf(selectedAccount)
       setBalance(balance)
-      console.log(balance, selectedAccount)
     } catch (e) {
       toast.error('Could not fetch balance: ', e.message)
     } finally {
